@@ -1,0 +1,9 @@
+<!doctype html><html><head><%- include('partials_head') %><title>EMS • Login</title></head>
+<body><div class="wrap"><div class="card">
+<h1>Employee Management System</h1><p class="muted">Admin login</p>
+<% if (error) { %><div class="alert"><%= error %></div><% } %>
+<form method="post" action="/login">
+<label>Username</label><input name="username" required placeholder="admin"/>
+<label>Password</label><input name="password" type="password" required placeholder="Admin@12345"/>
+<button class="btn">Login</button>
+</form></div></div></body></html>

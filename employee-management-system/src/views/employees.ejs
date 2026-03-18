@@ -1,0 +1,34 @@
+<!doctype html><html><head><%- include('partials_head') %><title>EMS • Employees</title></head>
+<body>
+<nav class="nav"><div class="brand">EMS</div><div class="links">
+<a href="/dashboard">Dashboard</a><a href="/employees">Employees</a>
+<form method="post" action="/logout"><button class="linkbtn">Logout</button></form>
+</div></nav>
+<main class="container">
+<div class="row"><h2>Employees</h2><a class="btn" href="/employees/new">+ Add</a></div>
+<form class="search" method="get" action="/employees">
+  <input name="q" value="<%= q %>" placeholder="Search name/email/department/role"/>
+  <button class="btn">Search</button>
+  <% if(q){ %><a class="btn ghost" href="/employees">Clear</a><% } %>
+</form>
+<div class="card"><table>
+<thead><tr><th>Name</th><th>Email</th><th>Dept</th><th>Role</th><th>Salary</th><th>Hired</th><th></th></tr></thead>
+<tbody>
+<% rows.forEach(e => { %>
+<tr>
+<td><b><%= e.full_name %></b></td>
+<td class="muted"><%= e.email %></td>
+<td><%= e.department %></td>
+<td><%= e.role %></td>
+<td><%= e.salary %></td>
+<td class="muted"><%= e.hired_date %></td>
+<td class="actions">
+  <a class="btn small" href="/employees/<%= e.id %>/edit">Edit</a>
+  <form method="post" action="/employees/<%= e.id %>/delete" onsubmit="return confirm('Delete employee?')">
+    <button class="btn small danger">Delete</button>
+  </form>
+</td>
+</tr>
+<% }) %>
+<% if(rows.length===0){ %><tr><td colspan="7" class="muted">No employees found.</td></tr><% } %>
+</tbody></table></div></main></body></html>

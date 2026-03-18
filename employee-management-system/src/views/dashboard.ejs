@@ -1,0 +1,17 @@
+<!doctype html><html><head><%- include('partials_head') %><title>EMS • Dashboard</title></head>
+<body>
+<nav class="nav"><div class="brand">EMS</div><div class="links">
+<a href="/dashboard">Dashboard</a><a href="/employees">Employees</a>
+<form method="post" action="/logout"><button class="linkbtn">Logout</button></form>
+</div></nav>
+<main class="container">
+<h2>Dashboard</h2>
+<div class="grid">
+  <div class="card"><h3>Total Employees</h3><div class="big"><%= total %></div></div>
+  <div class="card"><h3>By Department</h3>
+    <ul class="list">
+      <% byDept.forEach(r => { %><li><b><%= r.department %></b> <span class="muted">(<%= r.c %>)</span></li><% }) %>
+      <% if(byDept.length===0){ %><li class="muted">No employees yet.</li><% } %>
+    </ul>
+  </div>
+</div></main></body></html>
